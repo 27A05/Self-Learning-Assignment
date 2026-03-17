@@ -1,0 +1,53 @@
+// Ensure jQuery is loaded and the DOM is ready
+$(document).ready(function() {
+    // This variable helps differentiate between a single and a double click
+    let clickTimeout = null;
+
+    // Attach a single handler for both events using the universal selector '*'
+    $('*').on('click dblclick', function(event) {
+        // Stop event propagation to prevent handlers on parent elements from running
+        event.stopPropagation();
+        
+        // Check the type of event that occurred
+        if (event.type === 'click') {
+            // Clear any existing timeout to indicate a double-click is in progress
+            if (clickTimeout !== null) {
+                clearTimeout(clickTimeout);
+                clickTimeout = null;
+                // Treat this second click as part of a double-click
+
+                // Call the custom double-click handler
+                handleDoubleClick($(this));
+            } else {
+                // Set a timeout to assume a single click if no second click occurs within a short time (e.g., 300ms)
+                clickTimeout = setTimeout(() => {
+                    clickTimeout = null;
+                    // Call the custom single-click handler
+                    handleSingleClick($(this));
+                }, 300); // The time window is system-dependent; 300ms is a common value
+            }
+        } else if (event.type === 'dblclick') {
+            // If the browser fires the native dblclick event, clear the single-click timeout
+            if (clickTimeout !== null) {
+                clearTimeout(clickTimeout);
+                clickTimeout = null;
+            }
+            // Call the custom double-click handler
+            handleDoubleClick($(this));
+        }
+    });
+
+    // Custom function to handle single clicks
+    function handleSingleClick($element) {
+        console.log('Single click event on element:', $element[0].tagName, 'ID:', $element.attr('id') || 'None', 'Class:', $element.attr('class') || 'None');
+        // Add your single-click logic here
+        $element.css('border', '2px solid blue');
+    }
+
+    // Custom function to handle double clicks
+    function handleDoubleClick($element) {
+        console.log('Double click event on element:', $element[0].tagName, 'ID:', $element.attr('id') || 'None', 'Class:', $element.attr('class') || 'None');
+        // Add your double-click logic here
+        $element.css('border', '4px solid red');
+    }
+});

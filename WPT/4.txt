@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hide Headings and Track Mouse Position</title>
+    <!-- Include jQuery library from a CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { padding: 20px; }
+        .coords-display {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid black;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Heading 1 (Click me to hide)</h1>
+    <h2>Heading 2 (Click me to hide)</h2>
+    <h3>Heading 3 (Click me to hide)</h3>
+    <p>Click any heading to hide it and display the mouse coordinates below.</p>
+    
+    <div class="coords-display">
+        Mouse Position (relative to document): <span id="mouse-coords">N/A</span>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // 1. Hide all headings on click
+            // The selector "h1, h2, h3" targets all heading elements
+            $("h1, h2, h3").click(function(event) {
+                // 'this' refers to the specific heading that was clicked
+                $(this).hide(); // The .hide() method makes the element disappear
+
+                // 2. Find and display the mouse position
+                var xPos = event.pageX; // event.pageX gives the X position relative to the document
+                var yPos = event.pageY; // event.pageY gives the Y position relative to the document
+
+                // Update the display div with the coordinates
+                $("#mouse-coords").text("X: " + xPos + ", Y: " + yPos);
+            });
+        });
+    </script>
+
+</body>
+</html>

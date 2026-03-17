@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com"></script>
+    <title>Change Link with jQuery</title>
+</head>
+<body>
+
+<a href="https://www.w3resource.com" id="myLink">SQLite Tutorial</a>
+
+<button id="changeLinkButton">Change Link</button>
+
+</body>
+</html>

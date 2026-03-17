@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery Get Single Element</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        p {
+            padding: 8px;
+            border: 1px solid #ccc;
+            margin: 5px;
+        }
+        .highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Paragraph List</h2>
+<p>Paragraph 1</p>
+<p>Paragraph 2</p>
+<p>Paragraph 3</p>
+<p>Paragraph 4</p>
+
+<button id="getSingle">Highlight 3rd Paragraph</button>
+
+<script>
+$(document).ready(function() {
+    $("#getSingle").click(function() {
+        try {
+            // Select all paragraphs
+            let paragraphs = $("p");
+
+            // Validate that we have enough elements
+            if (paragraphs.length < 3) {
+                alert("Not enough paragraphs found!");
+                return;
+            }
+
+            // Get the 3rd paragraph (index starts at 0)
+            let thirdPara = paragraphs.eq(2);
+
+            // Highlight it
+            thirdPara.addClass("highlight");
+
+            // Show its text in console
+            console.log("Selected paragraph text:", thirdPara.text());
+        } catch (error) {
+            console.error("Error selecting element:", error);
+        }
+    });
+});
+</script>
+
+</body>
+</html>
+
