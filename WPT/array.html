@@ -1,0 +1,31 @@
+
+<html>
+    <head>
+<title> obhect example</title>
+    </head>
+    <body>
+
+<h2>Display object elements</h2>
+<p id="result"></p>
+
+<script>
+
+    let b={
+        id:100,
+        name:"abc",
+        email:"abc@gmail.com"
+
+    }
+
+    // let output="";
+
+    for(let key in b)
+    {
+        document.getElementById("result").innerHTML= key + " : " + b[key] + "<br>"
+     }
+
+    //  document.getElementById("result").innerHTML=output;
+</script>
+    </body>
+
+</html>
